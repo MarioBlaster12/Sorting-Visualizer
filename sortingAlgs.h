@@ -1,0 +1,15 @@
+#pragma once
+
+#include "./algs/bubbleSort.h"
+#include "./algs/insertionSort.h"
+#include "./algs/selectionSort.h"
+#include "./algs/mergeSort.h"
+#include "./algs/quickSort.h"
+#include "./algs/cocktailSort.h"
+#include "./algs/heapSort.h"
+#include "./algs/combSort.h"
+#include "./algs/shellSort.h"
+#include "./algs/gnomeSort.h"
+#include "./algs/insertionSortB.h"
+#include "./algs/oddEvenSort.h"
+#include "./algs/timSort.h"
