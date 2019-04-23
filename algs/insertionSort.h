@@ -1,5 +1,6 @@
 #pragma once
 
 #include "../draw.h"
+#include <SFML/Audio.hpp>
 
-void insertionSort(unsigned char a[], sf::RenderWindow* window, int l = 0, int r = 256);
+void insertionSort(unsigned char a[], sf::RenderWindow* window, int l, int r, sf::Sound* sound);

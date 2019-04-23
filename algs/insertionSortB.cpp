@@ -9,11 +9,12 @@ int binarySearch(unsigned char a[], int l, int r, int x){
         if(x > a[m])
             return binarySearch(a, m+1, r, x);
         return binarySearch(a, l, m-1, x);
+    } else {
+        return (x > a[l]) ? (l+1):l;
     }
-    return (x > a[l]) ? (l+1):l;
 }
 
-void insertionSortB(unsigned char a[], sf::RenderWindow* window){
+void insertionSortB(unsigned char a[], sf::RenderWindow* window, sf::Sound* sound){
     int j, selected, index;
     for(int i = 1; i < 256; i++){
         // constantly polling for events because if I don't sfml will just give up
@@ -27,11 +28,15 @@ void insertionSortB(unsigned char a[], sf::RenderWindow* window){
 
         while(j >= index){
             a[j+1] = a[j];
+            sound->setPitch(1+(a[j]/20));
+            sound->play();
             j--;
             draw(a, window);
             window->display();
         }
         a[j+1] = selected;
+        sound->setPitch(1+(a[j+1]/20));
+        sound->play();
         draw(a, window);
         window->display();
     }

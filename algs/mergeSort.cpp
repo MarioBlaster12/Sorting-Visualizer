@@ -1,6 +1,6 @@
 #include "mergeSort.h"
 
-void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r){
+void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r, sf::Sound* sound){
     int n1 = m - l + 1;
     int n2 = r - m;
 
@@ -16,9 +16,13 @@ void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r){
     while(i < n1 && j < n2){
         if(L[i] <= R[j]){
             a[k] = L[i];
+            sound->setPitch(1+(a[k]/20));
+            sound->play();
             i++;
         } else {
             a[k] = R[j];
+            sound->setPitch(1+(a[k]/20));
+            sound->play();
             j++;
         }
         k++;
@@ -28,6 +32,8 @@ void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r){
 
     while(i < n1) {
         a[k] = L[i];
+        sound->setPitch(1+(a[k]/20));
+        sound->play();
         i++;
         k++;
         draw(a, window);
@@ -36,6 +42,8 @@ void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r){
 
     while(j < n2) {
         a[k] = R[j];
+        sound->setPitch(1+(a[k]/20));
+        sound->play();
         j++;
         k++;
         draw(a, window);
@@ -46,15 +54,13 @@ void mergeArr(unsigned char a[], sf::RenderWindow* window, int l, int m, int r){
     window->pollEvent(temp);
 }
 
-void mergeSort(unsigned char a[], sf::RenderWindow* window, int l, int r){
+void mergeSort(unsigned char a[], sf::RenderWindow* window, int l, int r, sf::Sound* sound){
     if(l < r) {
         int m = l+(r-l)/2;
 
-        mergeSort(a, window, l, m);
-        mergeSort(a, window, m+1, r);
+        mergeSort(a, window, l, m, sound);
+        mergeSort(a, window, m+1, r, sound);
 
-        mergeArr(a, window, l, m, r);
-        //draw(window);
-        //window->display();
+        mergeArr(a, window, l, m, r, sound);
     }
 }

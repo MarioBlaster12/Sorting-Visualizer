@@ -5,4 +5,4 @@
 #include "insertionSort.h"
 #include "mergeSort.h"
 
-void timSort(unsigned char a[], sf::RenderWindow* window);
+void timSort(unsigned char a[], sf::RenderWindow* window, sf::Sound* sound);

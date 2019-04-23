@@ -1,8 +1,8 @@
 // Sorting algorithm visualizer
-
-#include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <stdlib.h>
+#include <thread>
+#include <SFML/Audio.hpp>
 
 #include "sortingAlgs.h"
 
@@ -39,12 +39,22 @@ void randSwap(sf::RenderWindow* window) {
         window->display();
     }
 }
-
 int main() {
     // Initialize array values
     for(int i = 0; i < 256; i++){
         values[i] = i;
     }
+
+    // Set up sound
+    sf::SoundBuffer buffer;
+    if(!buffer.loadFromFile("220.wav")){
+        printf("Could not load sound");
+        return -1;
+    }
+    sf::Sound sound;
+    sound.setBuffer(buffer);
+    sound.setVolume(3);
+    //sound.play();
 
     // Set up SFML window
     sf::RenderWindow window(sf::VideoMode(SCREENW, SCREENH), "Sorting");
@@ -82,31 +92,32 @@ int main() {
                             // I'd use a switch statement if C++ let me use one on strings
 
                             if(sortingAlgs[algIndex] == "Bubble Sort")
-                                bubbleSort(values, &window);
+                                bubbleSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Insertion Sort")
-                                insertionSort(values, &window, 0, 255);
+                                insertionSort(values, &window, 0, 255, &sound);
                             if(sortingAlgs[algIndex] == "Selection Sort")
-                                selectionSort(values, &window);
+                                selectionSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Merge Sort")
-                                mergeSort(values, &window, 0, 255);
+                                mergeSort(values, &window, 0, 255, &sound);
                             if(sortingAlgs[algIndex] == "Quick Sort")
-                                quickSort(values, &window, 0, 255);
+                                quickSort(values, &window, 0, 255, &sound);
                             if(sortingAlgs[algIndex] == "Cocktail Shaker Sort")
-                                cocktailSort(values, &window);
+                                cocktailSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Heap Sort")
-                                heapSort(values, &window);
+                                heapSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Comb Sort")
-                                combSort(values, &window);
+                                combSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Shell Sort")
-                                shellSort(values, &window);
+                                shellSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Gnome Sort")
-                                gnomeSort(values, &window);
+                                gnomeSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Binary Insertion Sort")
-                                insertionSortB(values, &window);
+                                insertionSortB(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "Odd Even Sort")
-                                oddEvenSort(values, &window);
+                                oddEvenSort(values, &window, &sound);
                             if(sortingAlgs[algIndex] == "TimSort")
-                                timSort(values, &window);
+                                timSort(values, &window, &sound);
+                            sound.stop();
                             break;
 
                         case sf::Keyboard::Enter:

@@ -8,7 +8,7 @@ int nextGap(int gap) {
     return gap;
 }
 
-void combSort(unsigned char a[], sf::RenderWindow* window){
+void combSort(unsigned char a[], sf::RenderWindow* window, sf::Sound* sound){
     int gap = 256;
 
     bool swapped = false;
@@ -24,6 +24,10 @@ void combSort(unsigned char a[], sf::RenderWindow* window){
         for(int i = 0; i < 256-gap; i++){
             if(a[i] > a[i+gap]){
                 std::swap(a[i], a[i+gap]);
+                sound->setPitch(1+(a[i]/20));
+                sound->play();
+                //sound->setPitch(1+(a[i+gap]/20));
+                //sound->play();
                 draw(a, window);
                 window->display();
                 swapped = true;
